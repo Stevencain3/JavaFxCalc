@@ -93,7 +93,7 @@ public class JavaFXCalculator extends Application {
                     memoryValue += Double.parseDouble(inStr);
                     memoryText.setText("Memory: " + memoryValue);
                 } else {
-                    // this.result + this.memoryValue;
+                    memoryValue += result;
                 }
         }
     };
