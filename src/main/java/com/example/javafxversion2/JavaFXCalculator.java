@@ -23,7 +23,8 @@ public class JavaFXCalculator extends Application {
             "7", "8", "9", "+",
             "4", "5", "6", "-",
             "1", "2", "3", "x",
-            "C", "0", "=", "/"
+            "C", "0", "=", "/",
+            "."
     };
     // For computation
     private double result = 0;      // Result of computation
@@ -35,13 +36,14 @@ public class JavaFXCalculator extends Application {
 
     private double memoryValue = 0.0;
 
-    // Event handler for all the 16 Buttons
+    // Event handler for all the 24 Buttons
     EventHandler handler = evt -> {
         String currentBtnLabel = ((Button)evt.getSource()).getText();
         switch (currentBtnLabel) {
             // Number buttons
             case "0": case "1": case "2": case "3": case "4":
             case "5": case "6": case "7": case "8": case "9":
+            case ".":
                 if (inStr.equals("0")) {
                     inStr = currentBtnLabel;  // no leading zero
                 } else {
@@ -84,6 +86,7 @@ public class JavaFXCalculator extends Application {
                 lastOperator = ' ';
                 tfDisplay.setText("0");
                 break;
+
         }
     };
 
@@ -119,7 +122,7 @@ public class JavaFXCalculator extends Application {
 
         // Setup a GridPane for 4x4 Buttons
         int numCols = 4;
-        int numRows = 4;
+        int numRows = 5;
         GridPane paneButton = new GridPane();
         paneButton.setPadding(new Insets(15, 0, 15, 0));  // top, right, bottom, left
         paneButton.setVgap(5);  // Vertical gap between nodes
@@ -134,7 +137,7 @@ public class JavaFXCalculator extends Application {
         }
 
         // Setup 16 Buttons and add to GridPane; and event handler
-        btns = new Button[16];
+        btns = new Button[17];
         for (int i = 0; i < btns.length; ++i) {
             btns[i] = new Button(btnLabels[i]);
             btns[i].setOnAction(handler);  // Register event handler
