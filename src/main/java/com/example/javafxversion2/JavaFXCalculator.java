@@ -11,6 +11,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.Priority;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -25,10 +26,14 @@ public class JavaFXCalculator extends Application {
             "C", "0", "=", "/"
     };
     // For computation
-    private int result = 0;      // Result of computation
+    private double result = 0;      // Result of computation
     private String inStr = "0";  // Input number as String
     // Previous operator: ' '(nothing), '+', '-', '*', '/', '='
     private char lastOperator = ' ';
+
+    private Text memoryText;
+
+    private double memoryValue = 0.0;
 
     // Event handler for all the 16 Buttons
     EventHandler handler = evt -> {
