@@ -23,8 +23,9 @@ public class JavaFXCalculator extends Application {
             "7", "8", "9", "+",
             "4", "5", "6", "-",
             "1", "2", "3", "x",
-            "C", "0", "=", "/",
-            "."
+            ".", "0", "=", "/",
+            "C", "←", "^","√",
+            "M+", "M-", "MR", "MC"
     };
     // For computation
     private double result = 0;      // Result of computation
@@ -87,6 +88,13 @@ public class JavaFXCalculator extends Application {
                 tfDisplay.setText("0");
                 break;
 
+            case "M+":
+                if (this.lastOperator != '='){
+                    memoryValue += Double.parseDouble(inStr);
+                    memoryText.setText("Memory: " + memoryValue);
+                } else {
+                    // this.result + this.memoryValue;
+                }
         }
     };
 
@@ -122,7 +130,7 @@ public class JavaFXCalculator extends Application {
 
         // Setup a GridPane for 4x4 Buttons
         int numCols = 4;
-        int numRows = 5;
+        int numRows = 6;
         GridPane paneButton = new GridPane();
         paneButton.setPadding(new Insets(15, 0, 15, 0));  // top, right, bottom, left
         paneButton.setVgap(5);  // Vertical gap between nodes
@@ -136,8 +144,8 @@ public class JavaFXCalculator extends Application {
             paneButton.getColumnConstraints().add(columns[i]);
         }
 
-        // Setup 16 Buttons and add to GridPane; and event handler
-        btns = new Button[17];
+        // Setup 24 Buttons and add to GridPane; and event handler
+        btns = new Button[24];
         for (int i = 0; i < btns.length; ++i) {
             btns[i] = new Button(btnLabels[i]);
             btns[i].setOnAction(handler);  // Register event handler
@@ -158,7 +166,7 @@ public class JavaFXCalculator extends Application {
 
         // Set up scene and stage
         primaryStage.setScene(new Scene(root, 300, 300));
-        primaryStage.setTitle("JavaFX Calculator");
+        primaryStage.setTitle("The Calc-U-Later");
         primaryStage.show();
     }
 
