@@ -153,12 +153,17 @@ public class JavaFXCalculator extends Application {
             paneButton.add(btns[i], i % numCols, i / numCols);  // control, col, row
         }
 
+        btns[21].setStyle("-fx-background-color: green; -fx-text-fill: white;");
+
+
         // memoryText display
         memoryText = new Text();
         memoryText.setText("Memory: " + memoryValue);
 
+
         // Setup up the scene graph rooted at a BorderPane (of 5 zones)
         BorderPane root = new BorderPane();
+        root.setStyle("-fx-background-color: yellow;");  // Set background color
         root.setPadding(new Insets(15, 15, 15, 15));  // top, right, bottom, left
         root.setTop(tfDisplay);     // Top zone contains the TextField
         root.setCenter(paneButton); // Center zone contains the GridPane of Buttons
