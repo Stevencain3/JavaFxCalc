@@ -91,7 +91,7 @@ public class JavaFXCalculator extends Application {
     // Perform computation on the previous result and the current input number,
     // based on the previous operator.
     private void compute() {
-        int inNum = Integer.parseInt(inStr);
+        double inNum = Double.parseDouble(inStr);
         inStr = "0";
         if (lastOperator == ' ') {
             result = inNum;
@@ -142,11 +142,16 @@ public class JavaFXCalculator extends Application {
             paneButton.add(btns[i], i % numCols, i / numCols);  // control, col, row
         }
 
+        // memoryText display
+        memoryText = new Text();
+        memoryText.setText("Memory: " + memoryValue);
+
         // Setup up the scene graph rooted at a BorderPane (of 5 zones)
         BorderPane root = new BorderPane();
         root.setPadding(new Insets(15, 15, 15, 15));  // top, right, bottom, left
         root.setTop(tfDisplay);     // Top zone contains the TextField
         root.setCenter(paneButton); // Center zone contains the GridPane of Buttons
+        root.setBottom(memoryText); // Bottom zone contains the memoryText
 
         // Set up scene and stage
         primaryStage.setScene(new Scene(root, 300, 300));
