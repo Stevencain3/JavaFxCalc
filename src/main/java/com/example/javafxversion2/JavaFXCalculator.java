@@ -195,11 +195,32 @@ public class JavaFXCalculator extends Application {
             btns[i].setOnAction(handler);  // Register event handler
             btns[i].setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);  // full-width
             paneButton.add(btns[i], i % numCols, i / numCols);  // control, col, row
+
+            if (btns[i].getText().matches("[0-9]")) {
+               btns[i].setStyle("-fx-background-color: #808A9F; -fx-text-fill: white; -fx-border-color:grey ;");
+            }
+            else if (btns[i].getText().matches("[\\+\\-x÷\\^√]")) {
+                btns[i].setStyle("-fx-background-color: #5e7d3b; -fx-text-fill: White;");
+            }
+            else if (btns[i].getText().matches("MC|MR|M\\+|M-")) {
+                btns[i].setStyle("-fx-background-color: #345798; -fx-text-fill: White;");
+            }
+            else if (btns[i].getText().matches("=")) {
+                btns[i].setStyle("-fx-background-color: #d18f23; -fx-text-fill: White;");
+            }
+            else if (btns[i].getText().matches("\\.|C|←")) {
+                btns[i].setStyle("-fx-background-color: #CFCAB4; -fx-text-fill: Black;");
+            }
+
+            /* Key For Colors
+            * CFCAB4 - sand beige   [For ., C, and ← buttons]
+            * d18f23 - Harvest Gold [For = button]
+            * 345798 - YinMn Blue   [For Memory Buttons]
+            * 5e7d3b - Fern Green   [For Operation sign buttons]
+            * 808A9F - Cool Grey    [For num buttons]
+             */
+
         }
-
-        btns[21].setStyle("-fx-background-color: green; -fx-text-fill: white;");
-
-
         // memoryText display
         memoryText = new Text();
         memoryText.setText("Memory: " + memoryValue);
@@ -207,7 +228,7 @@ public class JavaFXCalculator extends Application {
 
         // Setup up the scene graph rooted at a BorderPane (of 5 zones)
         BorderPane root = new BorderPane();
-        root.setStyle("-fx-background-color: yellow;");  // Set background color
+        root.setStyle("-fx-background-color: #666666;");  // Set background color
         root.setPadding(new Insets(15, 15, 15, 15));  // top, right, bottom, left
         root.setTop(tfDisplay);     // Top zone contains the TextField
         root.setCenter(paneButton); // Center zone contains the GridPane of Buttons
