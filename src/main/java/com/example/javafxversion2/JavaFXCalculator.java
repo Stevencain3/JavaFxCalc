@@ -92,9 +92,18 @@ public class JavaFXCalculator extends Application {
                 if (this.lastOperator != '='){
                     memoryValue += Double.parseDouble(inStr);
                     memoryText.setText("Memory: " + memoryValue);
+                    break;
                 } else {
                     memoryValue += result;
+                    break;
                 }
+
+            case "MC":
+                memoryValue = 0.0;
+                memoryText.setText("Memory: " + memoryValue);
+                break;
+
+
         }
     };
 
