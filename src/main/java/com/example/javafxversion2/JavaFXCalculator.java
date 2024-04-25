@@ -80,6 +80,16 @@ public class JavaFXCalculator extends Application {
                 lastOperator = '=';
                 break;
 
+         // sqrt buttion logic
+            case "√":
+                if (lastOperator != '=') {
+                    result = Math.sqrt(Double.parseDouble(inStr));
+                    inStr = String.valueOf(result);
+                }
+                tfDisplay.setText(inStr);
+                lastOperator = '=';
+                break;
+
             // Clear button
             case "C":
                 result = 0;
@@ -88,6 +98,7 @@ public class JavaFXCalculator extends Application {
                 tfDisplay.setText("0");
                 break;
 
+            // Memory add buttion logic
             case "M+":
                 if (this.lastOperator != '='){
                     memoryValue += Double.parseDouble(inStr);
@@ -98,11 +109,21 @@ public class JavaFXCalculator extends Application {
                     break;
                 }
 
+            // Memory Minus buttion logic
+            case "M-":
+                if (lastOperator != '=') {
+                    memoryValue -= Double.parseDouble(inStr);
+                } else {
+                    memoryValue -= result;
+                }
+                memoryText.setText("Memory: " + memoryValue);
+                break;
+
+            // Memory Clear buttion logic
             case "MC":
                 memoryValue = 0.0;
                 memoryText.setText("Memory: " + memoryValue);
                 break;
-
 
         }
     };
