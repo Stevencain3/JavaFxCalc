@@ -23,7 +23,7 @@ public class JavaFXCalculator extends Application {
             "7", "8", "9", "+",
             "4", "5", "6", "-",
             "1", "2", "3", "x",
-            ".", "0", "=", "/",
+            ".", "0", "=", "\u00F7",
             "C", "←", "^","√",
             "M+", "M-", "MR", "MC"
     };
@@ -58,7 +58,7 @@ public class JavaFXCalculator extends Application {
                 }
                 break;
 
-            // Operator buttons: '+', '-', 'x', '/' and '='
+            // Operator buttons: '+', '-', 'x', '÷' and '='
             case "+":
                 compute();
                 lastOperator = '+';
@@ -71,7 +71,7 @@ public class JavaFXCalculator extends Application {
                 compute();
                 lastOperator = '*';
                 break;
-            case "/":
+            case "\u00F7":
                 compute();
                 lastOperator = '/';
                 break;
