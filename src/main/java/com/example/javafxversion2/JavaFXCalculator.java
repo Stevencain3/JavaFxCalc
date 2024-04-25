@@ -80,7 +80,13 @@ public class JavaFXCalculator extends Application {
                 lastOperator = '=';
                 break;
 
-         // sqrt buttion logic
+            //Power button logic
+            case "^":
+                compute();
+                lastOperator = '^';
+                break;
+
+            //sqrt button logic
             case "√":
                 if (lastOperator != '=') {
                     result = Math.sqrt(Double.parseDouble(inStr));
@@ -119,6 +125,12 @@ public class JavaFXCalculator extends Application {
                 memoryText.setText("Memory: " + memoryValue);
                 break;
 
+            // Memory Recall
+            case "MR":
+                inStr = String.valueOf(memoryValue);
+                tfDisplay.setText(inStr);
+                break;
+
             // Memory Clear buttion logic
             case "MC":
                 memoryValue = 0.0;
@@ -142,8 +154,10 @@ public class JavaFXCalculator extends Application {
             result -= inNum;
         } else if (lastOperator == '*') {
             result *= inNum;
-        } else if (lastOperator == '/') {
+        } else if (lastOperator == '/') { // thinking about divide by zero  to get gold but Not sure yet
             result /= inNum;
+        } else if (lastOperator == '^') {
+            result = Math.pow(result, inNum); // Calculates the power of the result raised to the input number
         } else if (lastOperator == '=') {
             // Keep the result for the next operation
         }
