@@ -108,14 +108,14 @@ public class JavaFXCalculator extends Application {
             case "M+":
                 if (this.lastOperator != '='){
                     memoryValue += Double.parseDouble(inStr);
-                    memoryText.setText("Memory: " + memoryValue);
                     break;
                 } else {
                     memoryValue += result;
-                    break;
                 }
+                memoryText.setText("Memory: " + memoryValue);
+                break;
 
-            // Memory Minus buttion logic
+                // Memory Minus button logic
             case "M-":
                 if (lastOperator != '=') {
                     memoryValue -= Double.parseDouble(inStr);
@@ -131,7 +131,7 @@ public class JavaFXCalculator extends Application {
                 tfDisplay.setText(memoryValue + "");
                 break;
 
-            // Memory Clear buttion logic
+            // Memory Clear button logic
             case "MC":
                 memoryValue = 0.0;
                 memoryText.setText("Memory: " + memoryValue);
