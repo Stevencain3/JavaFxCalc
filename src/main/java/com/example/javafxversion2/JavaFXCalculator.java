@@ -21,6 +21,10 @@ import javafx.geometry.Pos;
  * arithmetic operations, memory operations, power, and square root calculations. This class manages the
  * setup and behavior of the calculator, including the layout of buttons and display fields, and handles
  * user interactions through event handlers.
+ *
+ * @authors Kaeden Snyder & Steven Cain
+ * @since 2024.04.26
+ * @version 2.0 beta
  */
 public class JavaFXCalculator extends Application {
 
