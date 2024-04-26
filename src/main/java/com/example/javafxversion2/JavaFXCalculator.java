@@ -104,7 +104,7 @@ public class JavaFXCalculator extends Application {
                 tfDisplay.setText("0");
                 break;
 
-            // Memory add buttion logic
+            // Memory add button logic
             case "M+":
                 if (this.lastOperator != '='){
                     memoryValue += Double.parseDouble(inStr);
