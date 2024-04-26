@@ -1,5 +1,4 @@
 package com.example.javafxversion2;
-
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -17,36 +16,41 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 
 
-
 /**
- * A simple calculator application built using JavaFX.
- * This application provides basic arithmetic operations, memory operations,
- * and supports power and square root calculations.
- *
+ * A simple calculator application built using JavaFX that offers a graphical user interface for basic
+ * arithmetic operations, memory operations, power, and square root calculations. This class manages the
+ * setup and behavior of the calculator, including the layout of buttons and display fields, and handles
+ * user interactions through event handlers.
  */
 public class JavaFXCalculator extends Application {
 
-    private TextField tfDisplay;    // display textfield
-    private Button[] btns;          // 16 buttons
-    private String[] btnLabels = {  // Labels of 16 buttons
+    private TextField tfDisplay;    // The display text field where numbers and results are shown.
+    private Button[] btns;          // Array of buttons for the calculator.
+    private String[] btnLabels = {  // Labels for calculator buttons, defining their displayed text.
             "7", "8", "9", "+",
             "4", "5", "6", "-",
             "1", "2", "3", "x",
             ".", "0", "=", "\u00F7",
             "C", "←", "^","√",
-            "M+", "M-", "MR", "MC"
-    };
+            "M+", "M-", "MR", "MC"};
+
     // For computation
-    private double result = 0;      // Result of computation
-    private String inStr = "0";  // Input number as String
-    // Previous operator: ' '(nothing), '+', '-', '*', '/', '='
-    private char lastOperator = ' ';
+    private double result = 0;     // Stores the current result of calculations.
+    private String inStr = "0";   // Stores the current input as a string.
 
-    private Text memoryText;
 
-    private double memoryValue = 0.0;
 
-    // Event handler for all the 24 Buttons
+    private char lastOperator = ' ';// The last operator entered by the user. ' '(nothing), '+', '-', '*', '/', '='
+
+    private Text memoryText;// Displays the current memory value.
+
+    private double memoryValue = 0.0; // Stores the current value in memory.
+
+
+    /**
+     * Event handler for handling calculator button clicks. This handler processes each button press,
+     * performing actions such as digit entry, operations, and memory management based on the button label.
+     */
     EventHandler handler = evt -> {
         String currentBtnLabel = ((Button)evt.getSource()).getText();
         switch (currentBtnLabel) {
@@ -105,6 +109,7 @@ public class JavaFXCalculator extends Application {
                 lastOperator = '=';
                 break;
 
+            // backspace button logic
             case "←":
                 if (!inStr.equals("0") && inStr.length() > 1) {
                     inStr = inStr.substring(0, inStr.length() - 1); // Remove last character
@@ -127,9 +132,8 @@ public class JavaFXCalculator extends Application {
                 if (this.lastOperator != '='){
                     memoryValue += Double.parseDouble(inStr);
                     memoryText.setText("Memory: " + memoryValue);
-
                     break;
-                } else {
+                }else{
                     memoryValue += result;
                     memoryText.setText("Memory: " + memoryValue);
                 }
@@ -161,9 +165,14 @@ public class JavaFXCalculator extends Application {
         }
     };
 
-    // User pushes '+', '-', '*', '/' or '=' button.
-    // Perform computation on the previous result and the current input number,
-    // based on the previous operator.
+
+    /**
+     * Handles logic for computing results based on the last operator
+     * the user pushes '+', '-', '*', '/' or '=', and the current input.
+     * This method performs arithmetic operations by updating the 'result' based on the 'lastOperator'
+     * and the new input captured in 'inStr'.
+     *
+     */
     private void compute() {
         double inNum = Double.parseDouble(inStr);
         inStr = "0";
@@ -185,7 +194,14 @@ public class JavaFXCalculator extends Application {
         tfDisplay.setText(result + "");
     }
 
-    // Setup the UI
+
+    /**
+     * Starts and initializes the JavaFX application. This method sets up the GUI layout,
+     * initializes all components including buttons and display fields, and arranges them
+     * in the primary stage.
+     *
+     * @param primaryStage The primary window of this application.
+     */
     @Override
     public void start(Stage primaryStage) {
         // Setup the Display TextField
@@ -217,6 +233,7 @@ public class JavaFXCalculator extends Application {
             btns[i].setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);  // full-width
             paneButton.add(btns[i], i % numCols, i / numCols);  // control, col, row
 
+            // sets the buttons that match each cordinating btnLabel to the proper color
             if (btns[i].getText().matches("[0-9]")) {
                btns[i].setStyle("-fx-background-color: #808A9F; -fx-text-fill: white; -fx-border-color:grey ;");
             }
@@ -240,8 +257,9 @@ public class JavaFXCalculator extends Application {
             * 5e7d3b - Fern Green   [For Operation sign buttons]
             * 808A9F - Cool Grey    [For num buttons]
              */
-
         }
+
+
         // memoryText display
         memoryText = new Text();
         memoryText.setText("Memory: " + memoryValue);
@@ -261,6 +279,13 @@ public class JavaFXCalculator extends Application {
         primaryStage.show();
     }
 
+
+    /**
+     * The main entry point for JavaFX applications. Launches the JavaFX runtime and subsequently calls
+     * code start method.
+     *
+     * @param args Command line arguments.
+     */
     public static void main(String[] args) {
         launch(args);
     }
