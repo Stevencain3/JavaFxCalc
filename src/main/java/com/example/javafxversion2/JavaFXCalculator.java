@@ -175,6 +175,14 @@ public class JavaFXCalculator extends Application {
                 }
                 break;
 
+            // Currency conversion from EUR to USD (reverse calculation for example)
+            case "€":
+                if (!inStr.isEmpty()) {
+                    double eur = Double.parseDouble(inStr);
+                    double usd = eur / USD_TO_EUR;
+                    tfDisplay.setText(String.format("%.2f USD", usd));
+                }
+                break;
 
 
         }
