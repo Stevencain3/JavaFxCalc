@@ -35,14 +35,15 @@ public class JavaFXCalculator extends Application {
 
     private TextField tfDisplay;    // The display text field where numbers and results are shown.
     private Button[] btns;          // Array of buttons for the calculator.
-    private String[] btnLabels = {  // Labels for calculator buttons, defining their displayed text.
+    private String[] btnLabels = {  // Labels for calculator buttons, defining their displayed text
             "7", "8", "9", "+",
             "4", "5", "6", "-",
             "1", "2", "3", "x",
             ".", "0", "=", "\u00F7",
             "C", "←", "^","√",
             "M+", "M-", "MR", "MC",
-            "$", "€", "Lbs", "Kg"
+            "$", "€", "Lbs", "Kg",
+            "Light", "Dark"
     };
 
     private double result = 0;     // Stores the current result of calculations.
@@ -183,8 +184,23 @@ public class JavaFXCalculator extends Application {
                     tfDisplay.setText(String.format("%.2f USD", usd));
                 }
                 break;
+            // Weight conversion from Lbs to Kg
+            case "Lbs":
+                if (!inStr.isEmpty()) {
+                    double lbs = Double.parseDouble(inStr);
+                    double kg = lbs * LBS_TO_KG;
+                    tfDisplay.setText(String.format("%.2f Kg", kg));
+                }
+                break;
 
-
+            // Weight conversion from Kg to Lbs
+            case "Kg":
+                if (!inStr.isEmpty()) {
+                    double kg = Double.parseDouble(inStr);
+                    double lbs = kg * KG_TO_LBS;
+                    tfDisplay.setText(String.format("%.2f Lbs", lbs));
+                }
+                break;
         }
     };
 
@@ -250,7 +266,10 @@ public class JavaFXCalculator extends Application {
         }
 
         // Setup 24 Buttons and add to GridPane; and event handler
-        btns = new Button[28];
+        btns = new Button[30];
+
+
+
         for (int i = 0; i < btns.length; ++i) {
             btns[i] = new Button(btnLabels[i]);
             btns[i].setOnAction(handler);  // Register event handler
@@ -262,18 +281,20 @@ public class JavaFXCalculator extends Application {
                btns[i].setStyle("-fx-background-color: #808A9F; -fx-text-fill: white; -fx-border-color:grey ;");
             }
             else if (btns[i].getText().matches("[\\+\\-x÷\\^√]")) {
-                btns[i].setStyle("-fx-background-color: #5e7d3b; -fx-text-fill: White;");
+                btns[i].setStyle("-fx-background-color: #5e7d3b; -fx-text-fill: White; -fx-border-color:grey; ");
             }
             else if (btns[i].getText().matches("MC|MR|M\\+|M-")) {
-                btns[i].setStyle("-fx-background-color: #345798; -fx-text-fill: White;");
+                btns[i].setStyle("-fx-background-color: #345798; -fx-text-fill: White;  ");
             }
             else if (btns[i].getText().matches("=")) {
-                btns[i].setStyle("-fx-background-color: #d18f23; -fx-text-fill: White;");
+                btns[i].setStyle("-fx-background-color: #BF8040; -fx-text-fill: White; ");
             }
             else if (btns[i].getText().matches("\\.|C|←")) {
-                btns[i].setStyle("-fx-background-color: #CFCAB4; -fx-text-fill: Black;");
+                btns[i].setStyle("-fx-background-color: #CFCAB4; -fx-text-fill: Black; ");
             }
-
+            else if (btns[i].getText().matches("\\$|€|Lbs|Kg")) {
+                btns[i].setStyle("-fx-background-color: #BF8040; -fx-text-fill: White;  ");  // Using a different color for distinction
+            }
 
             /* Key For Colors
             * CFCAB4 - sand beige   [For ., C, and ← buttons]
@@ -284,7 +305,8 @@ public class JavaFXCalculator extends Application {
              */
         }
 
-
+        btns[29].setStyle("-fx-background-color: #50514F; -fx-text-fill: white; -fx-border-color:grey ");
+        btns[28].setStyle("-fx-background-color: #FAF9F6; -fx-text-fill: Black; ");
         // memoryText display
         memoryText = new Text();
         memoryText.setText("Memory: " + memoryValue);
@@ -299,7 +321,7 @@ public class JavaFXCalculator extends Application {
         root.setBottom(memoryText); // Bottom zone contains the memoryText
 
         // Set up scene and stage
-        primaryStage.setScene(new Scene(root, 300, 300));
+        primaryStage.setScene(new Scene(root, 300, 350));
         primaryStage.setTitle("The Calc-U-Later");
         primaryStage.show();
     }
