@@ -16,7 +16,16 @@ import javafx.stage.Stage;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 
+
+
+/**
+ * A simple calculator application built using JavaFX.
+ * This application provides basic arithmetic operations, memory operations,
+ * and supports power and square root calculations.
+ *
+ */
 public class JavaFXCalculator extends Application {
+
     private TextField tfDisplay;    // display textfield
     private Button[] btns;          // 16 buttons
     private String[] btnLabels = {  // Labels of 16 buttons
@@ -96,6 +105,15 @@ public class JavaFXCalculator extends Application {
                 lastOperator = '=';
                 break;
 
+            case "←":
+                if (!inStr.equals("0") && inStr.length() > 1) {
+                    inStr = inStr.substring(0, inStr.length() - 1); // Remove last character
+                } else {
+                    inStr = "0"; // Reset to 0 if the string is empty after backspacing
+                }
+                tfDisplay.setText(inStr);
+                break;
+
             // Clear button
             case "C":
                 result = 0;
@@ -108,11 +126,14 @@ public class JavaFXCalculator extends Application {
             case "M+":
                 if (this.lastOperator != '='){
                     memoryValue += Double.parseDouble(inStr);
+                    memoryText.setText("Memory: " + memoryValue);
+
                     break;
                 } else {
                     memoryValue += result;
+                    memoryText.setText("Memory: " + memoryValue);
                 }
-                memoryText.setText("Memory: " + memoryValue);
+
                 break;
 
                 // Memory Minus button logic
