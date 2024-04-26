@@ -23,6 +23,7 @@ import javafx.geometry.Pos;
  * user interactions through event handlers.
  *
  * @authors Kaeden Snyder & Steven Cain
+ * @github https://github.com/kasnyd/JavaFxVersion2
  * @since 2024.04.26
  * @version 2.0 beta
  */
@@ -38,16 +39,10 @@ public class JavaFXCalculator extends Application {
             "C", "←", "^","√",
             "M+", "M-", "MR", "MC"};
 
-    // For computation
     private double result = 0;     // Stores the current result of calculations.
     private String inStr = "0";   // Stores the current input as a string.
-
-
-
     private char lastOperator = ' ';// The last operator entered by the user. ' '(nothing), '+', '-', '*', '/', '='
-
     private Text memoryText;// Displays the current memory value.
-
     private double memoryValue = 0.0; // Stores the current value in memory.
 
 
