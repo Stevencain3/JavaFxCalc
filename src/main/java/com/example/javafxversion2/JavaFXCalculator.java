@@ -128,7 +128,7 @@ public class JavaFXCalculator extends Application {
             // Memory Recall
             case "MR":
                 inStr = String.valueOf(memoryValue);
-                tfDisplay.setText(inStr);
+                tfDisplay.setText(memoryValue + "");
                 break;
 
             // Memory Clear buttion logic
