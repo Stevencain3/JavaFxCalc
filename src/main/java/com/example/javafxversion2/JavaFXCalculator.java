@@ -29,6 +29,10 @@ import javafx.geometry.Pos;
  */
 public class JavaFXCalculator extends Application {
 
+    final double USD_TO_EUR = 0.93;  // Example rate
+    final double KG_TO_LBS = 2.20462;  // 1 kg = 2.20462 lbs
+    final double LBS_TO_KG = 0.453592;  // 1 lb = 0.453592 kg
+
     private TextField tfDisplay;    // The display text field where numbers and results are shown.
     private Button[] btns;          // Array of buttons for the calculator.
     private String[] btnLabels = {  // Labels for calculator buttons, defining their displayed text.
@@ -37,7 +41,9 @@ public class JavaFXCalculator extends Application {
             "1", "2", "3", "x",
             ".", "0", "=", "\u00F7",
             "C", "←", "^","√",
-            "M+", "M-", "MR", "MC"};
+            "M+", "M-", "MR", "MC",
+            "$", "€", "Lbs", "Kg"
+    };
 
     private double result = 0;     // Stores the current result of calculations.
     private String inStr = "0";   // Stores the current input as a string.
@@ -161,6 +167,16 @@ public class JavaFXCalculator extends Application {
                 memoryText.setText("Memory: " + memoryValue);
                 break;
 
+            case "$":
+                if (!inStr.isEmpty()) {
+                    double usd = Double.parseDouble(inStr);
+                    double eur = usd * USD_TO_EUR;
+                    tfDisplay.setText(String.format("%.2f EUR", eur));
+                }
+                break;
+
+
+
         }
     };
 
@@ -195,6 +211,7 @@ public class JavaFXCalculator extends Application {
 
 
     /**
+     *
      * Starts and initializes the JavaFX application. This method sets up the GUI layout,
      * initializes all components including buttons and display fields, and arranges them
      * in the primary stage.
@@ -225,7 +242,7 @@ public class JavaFXCalculator extends Application {
         }
 
         // Setup 24 Buttons and add to GridPane; and event handler
-        btns = new Button[24];
+        btns = new Button[28];
         for (int i = 0; i < btns.length; ++i) {
             btns[i] = new Button(btnLabels[i]);
             btns[i].setOnAction(handler);  // Register event handler
@@ -248,6 +265,7 @@ public class JavaFXCalculator extends Application {
             else if (btns[i].getText().matches("\\.|C|←")) {
                 btns[i].setStyle("-fx-background-color: #CFCAB4; -fx-text-fill: Black;");
             }
+
 
             /* Key For Colors
             * CFCAB4 - sand beige   [For ., C, and ← buttons]
