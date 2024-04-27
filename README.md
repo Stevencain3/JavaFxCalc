@@ -4,7 +4,7 @@
 # JavaFX Calculator
 
 ## Description
-The JavaFX Calculator is a basic calculator application built using Java and JavaFX. It features standard arithmetic operations, memory functions, and the ability to compute square roots, among other functionalities. This application provides an intuitive graphical user interface with clickable on-screen buttons, making it easy to perform calculations.
+The JavaFX Calculator is a basic calculator application built using Java and JavaFX. It features standard arithmetic operations, memory functions, and the ability to compute square roots, among other functionalities such as curency conversion between USD and the Pound Stirling, aswell as having weight conversion capability between Lbs and Kgs. This application provides an intuitive graphical user interface with clickable on-screen buttons, making it easy to perform calculations.
 
 ## Installation
 To install the JavaFX Calculator, follow these steps:
