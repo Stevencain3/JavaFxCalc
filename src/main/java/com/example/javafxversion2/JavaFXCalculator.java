@@ -43,7 +43,6 @@ public class JavaFXCalculator extends Application {
             "C", "←", "^","√",
             "M+", "M-", "MR", "MC",
             "$", "€", "Lbs", "Kg",
-            "Light", "Dark"
     };
 
     private double result = 0;     // Stores the current result of calculations.
@@ -265,8 +264,8 @@ public class JavaFXCalculator extends Application {
             paneButton.getColumnConstraints().add(columns[i]);
         }
 
-        // Setup 24 Buttons and add to GridPane; and event handler
-        btns = new Button[30];
+        // Setup 28 Buttons and add to GridPane; and event handler
+        btns = new Button[28];
 
 
 
@@ -305,8 +304,6 @@ public class JavaFXCalculator extends Application {
              */
         }
 
-        btns[29].setStyle("-fx-background-color: #50514F; -fx-text-fill: white; -fx-border-color:grey ");
-        btns[28].setStyle("-fx-background-color: #FAF9F6; -fx-text-fill: Black; ");
         // memoryText display
         memoryText = new Text();
         memoryText.setText("Memory: " + memoryValue);
@@ -321,7 +318,7 @@ public class JavaFXCalculator extends Application {
         root.setBottom(memoryText); // Bottom zone contains the memoryText
 
         // Set up scene and stage
-        primaryStage.setScene(new Scene(root, 300, 350));
+        primaryStage.setScene(new Scene(root, 300, 325));
         primaryStage.setTitle("The Calc-U-Later");
         primaryStage.show();
     }
